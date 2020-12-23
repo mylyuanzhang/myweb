@@ -15,7 +15,7 @@ def hello_world(username):
 
 @app.route('/hello/<int:post_id>')
 def hello_id(post_id):
-    return 'Hello, No.%d!' % post_id
+    return 'Hello, you get a No.%d digree!' % post_id
 
 # @app.route('/login')
 # def login():
