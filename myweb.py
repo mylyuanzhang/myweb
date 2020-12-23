@@ -28,12 +28,12 @@ def hello_id(post_id):
 #     print(url_for('hello_world', username='Mark Mo'))
 #     print(url_for('hello_id', post_id=1))
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        do_the_login()
-    else:
-        show_the_login_form()
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'POST':
+#         do_the_login()
+#     else:
+#         show_the_login_form()
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000)
