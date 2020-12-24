@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from flask import Flask, url_for
+from flask import Flask
 from flask import request
 app = Flask(__name__)
 app.debug = True
@@ -19,7 +19,7 @@ def hello_id(post_id):
 
 @app.route('/main', methods=['GET', ' POST'])
 def home():
-    return '<h1>Home</h1>'
+    return '<h1>Home!</h1>'
 
 @app.route('/signin', methods=['GET'])
 def sighin_form():
@@ -28,7 +28,13 @@ def sighin_form():
               <p><input name="password" type="password"></p>
               <p><button type="submit">Sign In</button></p>
               </form>'''
-              
+
+@app.route('/signin', methods=['POST'])
+def signin():
+    # 需要从request对象读取表单：
+    if request.form['username']=='admin' and request.form['password']=='password1':
+         return '<h3>Hello, admin!</h3>'
+    return '<h3>Bad username or password.</h3>'
 # @app.route('/login')
 # def login():
 #     return 'Login'
