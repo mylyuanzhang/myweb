@@ -17,6 +17,18 @@ def hello_world(username):
 def hello_id(post_id):
     return 'Hello, you get a No.%d digree!' % post_id
 
+@app.route('/main', methods=['GET', ' POST'])
+def home():
+    return '<h1>Home</h1>'
+
+@app.route('/signin', methods=['GET'])
+def sighin_form():
+    return '''<form action="/signin" method="post">
+              <p><input name="username"></p>
+              <p><input name="password" type="password"></p>
+              <p><button type="submit">Sign In</button></p>
+              </form>'''
+              
 # @app.route('/login')
 # def login():
 #     return 'Login'
