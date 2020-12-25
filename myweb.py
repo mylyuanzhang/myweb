@@ -35,7 +35,7 @@ def signin():
     password = request.form['password']
     # 需要从request对象读取表单：
     if login(username, password):
-        return render_template('signin-passed.html', username=username)
+        return render_template('signin-check.html', username=username)
     return render_template('form.html', message='Bad username or password', username=username)
 
 # @app.route('/login')
