@@ -1,40 +1,43 @@
 # -*- coding:utf-8 -*-
 
-from flask import Flask，request, render_template
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 app.debug = True
 
-@app.route('/')
-def index():
+@app.route('/', methods=['GET','POST'])
+def home():
     return render_template('home.html')
 
-@app.route('/hello/<username>')
-def hello_world(username):
-    return 'Hello, %s!' % username
+# @app.route('/hello/<username>')
+# def hello_world(username):
+#     return 'Hello, %s!' % username
 
-@app.route('/hello/<int:post_id>')
-def hello_id(post_id):
-    return 'Hello, you get a No.%d digree!' % post_id
+# @app.route('/hello/<int:post_id>')
+# def hello_id(post_id):
+#     return 'Hello, you get a No.%d digree!' % post_id
 
-@app.route('/main', methods=['GET', ' POST'])
-def home():
-    return '<h1>Home!</h1>'
+# @app.route('/main', methods=['GET', ' POST'])
+# def home():
+#     return '<h1>Home!</h1>'
+def login(username, password):
+    if username=='admin' and password=='password1':
+        return True
+    return False
 
 @app.route('/signin', methods=['GET'])
 def sighin_form():
-    return '''<form action="/signin" method="post">
-              <p><input name="username"></p>
-              <p><input name="password" type="password"></p>
-              <p><button type="submit">Sign In</button></p>
-              </form>'''
+    return render_template('form.html')
 
 @app.route('/signin', methods=['POST'])
 def signin():
+    username = request.form['username']
+    password = request.form['password']
     # 需要从request对象读取表单：
-    if request.form['username']=='admin' and request.form['password']=='password1':
-         return '<h3>Hello, admin!</h3>'
-    return '<h3>Bad username or password.</h3>'
+    if login(username, password):
+        return render_template('signin-passed.html', username=username)
+    return render_template('form.html', message='Bad username or password', username=username)
+
 # @app.route('/login')
 # def login():
 #     return 'Login'
