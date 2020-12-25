@@ -1,13 +1,13 @@
 # -*- coding:utf-8 -*-
 
-from flask import Flask
-from flask import request
+from flask import Flask，request, render_template
+
 app = Flask(__name__)
 app.debug = True
 
 @app.route('/')
 def index():
-    return 'Index Page'
+    return render_template('home.html')
 
 @app.route('/hello/<username>')
 def hello_world(username):
